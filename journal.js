@@ -17,11 +17,11 @@
 //         "border-2 h-80 border-orange-500 w-72 m-3 p-3 flex flex-col items-center";
 
 //       pokemonCard.innerHTML = `
-//       <div class=" overflow-auto text-center flex items-center justify-center flex-col "    > 
+//       <div class=" overflow-auto text-center flex items-center justify-center flex-col "    >
 //         <img src="${pokemon.sprite}" alt="${pokemon.name}" class="h-40 w-40 object-contain mb-4 items-center">
 //         <h2 class="text-xl capitalize font-bold text-orange-500">${pokemon.name}</h2>
 //         <p class="mt-2">Height: ${pokemon.height}</p>
-//         <p>Weight: ${pokemon.weight}</p>  
+//         <p>Weight: ${pokemon.weight}</p>
 //           <input
 //             type="text"
 //             maxlength="25"
@@ -35,18 +35,13 @@
 //           </button>
 //           <ul id="ul"></ul>
 //           </div>
-        
-        
+
 //       `;
 
 //       container2.appendChild(pokemonCard);
 //     });
 //   }
 // });
-
-
-
-
 
 // window.addEventListener("load", showtext);
 
@@ -132,26 +127,19 @@
 //   }
 // }
 
-
-
-
-
-
-
-
-
-
 document.addEventListener("DOMContentLoaded", () => {
   const container2 = document.getElementById("container-2");
 
   const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
   if (favorites.length === 0) {
-    container2.innerHTML = "<p class='text-gray-500 text-center w-full'>No favorite Pokémon yet!</p>";
+    container2.innerHTML =
+      "<p class='text-gray-500 text-center w-full'>No favorite Pokémon yet!</p>";
   } else {
     favorites.forEach((pokemon) => {
       const pokemonCard = document.createElement("div");
-      pokemonCard.className = "border-2 h-80 border-orange-500 w-72 m-3 p-3 flex flex-col items-center";
+      pokemonCard.className =
+        "border-2 h-80 border-orange-500 w-72 m-3 p-3 flex flex-col items-center";
 
       // Generate unique IDs
       const noteInputId = `note-${pokemon.name}`;
@@ -176,7 +164,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const button = document.getElementById(addButtonId);
       const ul = document.getElementById(ulId);
 
-      let texts = localStorage.getItem(`text-${pokemon.name}`) ? gettexts(pokemon.name) : [];
+      let texts = localStorage.getItem(`text-${pokemon.name}`)
+        ? gettexts(pokemon.name)
+        : [];
 
       button.addEventListener("click", () => {
         const text = input.value.trim();
@@ -231,7 +221,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       function gettexts(pokemonName) {
         try {
-          const storedTexts = JSON.parse(localStorage.getItem(`text-${pokemonName}`));
+          const storedTexts = JSON.parse(
+            localStorage.getItem(`text-${pokemonName}`)
+          );
           return Array.isArray(storedTexts) ? storedTexts : [];
         } catch (error) {
           console.error("Failed to parse text from localStorage", error);
