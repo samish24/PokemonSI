@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", () => {
   const container2 = document.getElementById("container-2");
 
