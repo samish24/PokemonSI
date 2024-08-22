@@ -1,7 +1,7 @@
 const searchButton = document.getElementById("search-button");
 const searchInput = document.getElementById("search");
 const resultsDiv = document.getElementById("results");
-
+// fetch datai and search
 searchButton.addEventListener("click", async () => {
   const pokemonName = searchInput.value.toLowerCase();
   const response = await fetch(
@@ -15,7 +15,7 @@ searchButton.addEventListener("click", async () => {
     alert("Pokemon not found!");
   }
 });
-
+// html cod for fetch datai
 async function displayPokemon(pokemonData) {
   const pokemonCard = document.createElement("div");
   pokemonCard.className =
@@ -39,7 +39,7 @@ async function displayPokemon(pokemonData) {
     "text-center"
   );
 
-  // Get the button and add an event listener to it
+  // button cod für speichern
   const addButton = pokemonCard.querySelector("button");
   addButton.addEventListener("click", () => {
     addToFavorites(
@@ -55,7 +55,7 @@ async function displayPokemon(pokemonData) {
 }
 
 //________________________________________________________________________________________________________________
-
+// render in html datai
 function addToFavorites(id, name, sprite, height, weight) {
   let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 

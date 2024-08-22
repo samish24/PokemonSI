@@ -1,3 +1,4 @@
+// favirot fech datai
 document.addEventListener("DOMContentLoaded", () => {
   const container2 = document.getElementById("container-2");
 
@@ -27,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <ul id="${ulId}"></ul>
       </div>
       `;
-
+//  text feld cod
       container2.appendChild(pokemonCard);
 
       const input = document.getElementById(noteInputId);
