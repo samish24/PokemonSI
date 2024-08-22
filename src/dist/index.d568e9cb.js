@@ -142,14 +142,14 @@
       this[globalName] = mainExports;
     }
   }
-})({"hAbKD":[function(require,module,exports) {
+})({"anbl8":[function(require,module,exports) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
 var HMR_USE_SSE = false;
-module.bundle.HMR_BUNDLE_ID = "0907ca6d3464ddca";
+module.bundle.HMR_BUNDLE_ID = "22dbcfd4d568e9cb";
 "use strict";
 /* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, HMR_USE_SSE, chrome, browser, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
@@ -583,8 +583,48 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
     });
 }
 
-},{}],"j4kuM":[function(require,module,exports) {
+},{}],"gLLPy":[function(require,module,exports) {
+const searchButton = document.getElementById("search-button");
+const searchInput = document.getElementById("search");
+const resultsDiv = document.getElementById("results");
+searchButton.addEventListener("click", async ()=>{
+    const pokemonName = searchInput.value.toLowerCase();
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
+    if (response.ok) {
+        const pokemonData = await response.json();
+        displayPokemon(pokemonData);
+    } else alert("Pokemon not found!");
+});
+async function displayPokemon(pokemonData) {
+    const pokemonCard = document.createElement("div");
+    pokemonCard.className = "border-2 h-80 border-orange-500 w-80 m-3 p-3 flex flex-col items-center";
+    pokemonCard.innerHTML = `
+    <img src="${pokemonData.sprites.other.showdown.front_shiny}" alt="${pokemonData.name}" class="h-40 w-40 object-contain mb-4">
+    <h2 class="text-xl capitalize font-bold text-orange-500">${pokemonData.name}</h2>
+    <p class="mt-2">Height: ${pokemonData.height}</p>
+    <p>Weight: ${pokemonData.weight}</p>
+    <button class="mt-2 bg-green-500 text-white p-1 rounded-md" onclick="addToFavorites(${pokemonData.id}, '${pokemonData.name}', '${pokemonData.sprites.front_default}', ${pokemonData.height}, ${pokemonData.weight})">Add to Favorites</button>
+  `;
+    pokemonCard.classList.add("bg-white", "rounded-lg", "shadow-lg", "p-4", "flex", "flex-col", "items-center", "text-center");
+    resultsDiv.appendChild(pokemonCard);
+}
+//________________________________________________________________________________________________________________
+function addToFavorites(id, name, sprite, height, weight) {
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    const newFavorite = {
+        id: id,
+        name: name,
+        sprite: sprite,
+        height: height,
+        weight: weight
+    };
+    if (!favorites.some((pokemon)=>pokemon.id === id)) {
+        favorites.push(newFavorite);
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+        alert(`${name} has been added to your favorites!`);
+    } else alert(`${name} is already in your favorites!`);
+}
 
-},{}]},["hAbKD","j4kuM"], "j4kuM", "parcelRequire94c2")
+},{}]},["anbl8","gLLPy"], "gLLPy", "parcelRequire94c2")
 
-//# sourceMappingURL=pokemon.3464ddca.js.map
+//# sourceMappingURL=index.d568e9cb.js.map
