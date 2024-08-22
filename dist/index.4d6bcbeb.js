@@ -603,9 +603,14 @@ async function displayPokemon(pokemonData) {
     <h2 class="text-xl capitalize font-bold text-orange-500">${pokemonData.name}</h2>
     <p class="mt-2">Height: ${pokemonData.height}</p>
     <p>Weight: ${pokemonData.weight}</p>
-    <button class="mt-2 bg-green-500 text-white p-1 rounded-md" onclick="${addToFavorites(pokemonData.id, pokemonData.name, pokemonData.sprites.front_default, pokemonData.height, pokemonData.weight)}">Add to Favorites</button>
+    <button class="mt-2 bg-green-500 text-white p-1 rounded-md">Add to Favorites</button>
   `;
     pokemonCard.classList.add("bg-white", "rounded-lg", "shadow-lg", "p-4", "flex", "flex-col", "items-center", "text-center");
+    // Get the button and add an event listener to it
+    const addButton = pokemonCard.querySelector("button");
+    addButton.addEventListener("click", ()=>{
+        addToFavorites(pokemonData.id, pokemonData.name, pokemonData.sprites.front_default, pokemonData.height, pokemonData.weight);
+    });
     resultsDiv.appendChild(pokemonCard);
 }
 //________________________________________________________________________________________________________________
